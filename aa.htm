@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单提交</title>
+    <style>
+    html, body {
+        background-color: #5da3fb;
+    }
+
+    .iphone {
+        width: 480px;
+        margin: 20px  auto;
+        height: 960px;
+        border-radius: 30px;
+        border: 2px solid #eee;
+        overflow: hidden;
+    }
+
+    .box {
+        padding: 10px;
+        background: #000;
+        height: 940px;
+        position: relative;
+    }
+
+    .top {
+        position: absolute;
+        width: 60%;
+        height: 25px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background: #333;
+        margin: 0 20%;
+        text-align: center;
+    }
+
+    .top span {
+        display: inline-block;
+        width: 100px;
+        background: rgba(255, 255, 255, .5);
+        height: 10px;
+        border-radius: 5px;
+    }
+
+    .top i {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        border: 4px solid #000;
+        background: #38c307;
+        margin-left: 15px;
+    }
+
+    .middle {
+        width: 100%;
+        height: 940px;
+        background: #f8f8f8;
+        border-radius: 20px;
+        overflow-y: auto;
+        transition: all .3s
+    }
+
+    .bottom {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 15px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .bottom i {
+        display: inline-block;
+        height: 10px;
+        background: rgba(0, 0, 0, .3);
+        width: 150px;
+        border-radius: 5px;
+    }
+    .form{
+        padding: 20px
+    }
+    h2{text-align: center}
+    .item-tt{
+        height:60px;
+        line-height: 60px;
+        padding:0 10px;
+        background-color: #fff;
+        margin-bottom: 30px;
+        border-radius:5px;
+        border: 1px solid #ddd;
+        color: #666
+    }   
+    .item-tt i{display: block;float: right;font-size: 18px;color: #5ca3fb;font-style:normal;transition: all .3s .3s}
+    .item-tt.dot{text-align: center;border-style: dashed;border-color:#5ca3fb }
+    .item-tt.empty{
+        border-color:red;
+        animation: dou .1s ease-in .3s;
+        animation-iteration-count: 3
+    }
+    @keyframes dou{
+        0%{
+            transform: translateX(0);
+        }
+        30%{
+            transform: translateX(-20px);
+        }
+        60%{
+            transform: translateX(20px);
+        }
+        100%{
+            transform: translateX(0);
+        }
+    }
+    .item-tt .more{width:30px;height: 30px;border-radius: 50%;float: none;margin-right:10px;display: inline-block;background: #5ca3fb;color: #fff;line-height: 30px;}
+    img{
+        width: 90%;
+        margin:15px auto;
+        display: block;
+        border-radius: 15px;
+    }
+    .button{
+        width:60%;
+        text-align: center;
+        color: #fff;
+        line-height: 50px;
+        font-size:18px;
+        background-color: #5ca3fb;
+        border-radius:2px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        cursor: pointer;
+        display: block;
+        outline: none;
+        border:none;
+    }
+    input{
+        height: 30px;
+        line-height: 30px;
+        text-indent: 10px;
+        width: 80%;
+        border:none;
+        font-size: 16px;
+        outline: none
+    }
+
+    </style>
+</head>
+<body>
+    <div class="iphone">
+        <div class="box">
+            <div class="top"><span></span><i></i></div>
+            <div class="middle">
+                <form class="form">
+                    <h2>Exploration | Error Interaction</h2>
+                    <img src="https://cdn.dribbble.com/users/7037/screenshots/5207960/hackerrank_ttm_concept_4x.png" alt="">
+                    <div class="item-tt">
+                        <i>+</i><input type="text" value="" name="kw" value="" placeholder="Using animation" />
+                    </div>
+                    <div class="item-tt">
+                        <i>+</i><input type="text" value="" name="kx" value="" placeholder="Using animation" />
+                    </div>
+                    <div class="item-tt">
+                        <i>+</i><input type="text" value="" name="ks" value="" placeholder="Using animation" />
+                    </div>
+                    <div class="item-tt dot">
+                        <i class="more">+</i> animation add
+                    </div>
+                    <img src="https://cdn.dribbble.com/users/92173/screenshots/5247668/iphone_x_4x.jpg" alt="">
+                    <img src="https://cdn.dribbble.com/users/148582/screenshots/5241857/dribbble_impostersyndrome-02_4x.png" alt="">
+                    <img src="https://cdn.dribbble.com/users/1152172/screenshots/5246857/01_v2.png" alt="">
+                    <img src="https://cdn.dribbble.com/users/1001464/screenshots/5251814/cover_4x.png" alt="">
+                    <button type="submit" class="button">Submit</button>
+                </form>
+            </div>
+            <div class="bottom"><i></i></div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var _btn=document.getElementsByClassName('button')[0],
+        _box=document.getElementsByClassName('middle')[0],
+        _form=document.getElementsByClassName('form')[0],
+        $timer,
+        _names= _form.elements,
+        showEle=function(ele){
+            var _top=ele.offsetTop
+            ele.parentElement.className='item-tt empty'
+            var _scrollTop=function(){
+                    _box.scrollTop-=50
+                    $timer=window.requestAnimationFrame(_scrollTop)
+                    if(_box.scrollTop<=_top-100)window.cancelAnimationFrame($timer)
+                }
+            _scrollTop()
+        }
+        for(var i=0;i<_names.length-1;i++){
+            _names[i].onfocus=function(e){
+                e.target.parentElement.className='item-tt'
+            }
+        }
+    _form.onsubmit=function(event){
+        for(var i=0;i<_names.length-1;i++){
+            if(!_names[i].value){
+                showEle(_names[i])
+                break;
+            }
+        }
+        event.preventDefault()
+    }
+</script>
